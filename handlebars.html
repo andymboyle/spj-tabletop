@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="../common/cats.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>An example with a Google doc</h1>
+    
+    <div id="content"></div>
+    
+    <script id="cat-template" type="text/x-handlebars-template">
+      <div class="entry">
+        <h2>{{event}}</h2>
+        <h3>Genre: {{genre}}</h3>
+        <div class="body">
+          {{blurb}}
+        </div>
+      </div>
+    </script>
+
+    <!-- Don't need jQuery for Tabletop, but using it for this example -->
+    <script type="text/javascript" src="js/handlebars.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/tabletop.js"></script>
+    <script type="text/javascript">
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?key=0Ark-PJD-Ze_DdEFzb0ZoQk55OU9RdzRtck85UXduOFE&output=html';
+
+      $(document).ready( function() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showInfo,
+                         parseNumbers: true } );
+      });
+        
+      function showInfo(data, tabletop) {
+        var source   = $("#cat-template").html();
+        var template = Handlebars.compile(source);
+
+        $.each( tabletop.sheets("events").all(), function(i, cat) {
+          var html = template(cat);
+          $("#content").append(html);
+        });
+      }
+    
+      document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");    
+    </script>
+  </body>
+</html>
