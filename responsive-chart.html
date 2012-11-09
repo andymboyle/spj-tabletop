@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/responsive-chart.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+<div class="article-body">		
+	
+		<div class="interactive-container">
+    <div class="interactive-intro">
+        <p>Here's some text you can throw in here.</p>
+    </div>
+    <div class="interactive-body">
+        <div class="datatable">
+            <div class="row header">
+                <div class="name cell" data-name="name">
+                    <div class="background">
+                        <div class="inner-cell">
+                            <div class="label"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="location cell" data-name="location">
+                    <div class="background">
+                        <div class="inner-cell">
+                            <div class="label">School</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accusations cell" data-name="accusations">
+                    <div class="background">
+                        <div class="inner-cell">
+                            <div class="label">Born</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resolution cell" data-name="resolution">
+                    <div class="background">
+                        <div class="inner-cell">
+                            <div class="label">After graduation</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reason cell" data-name="reason">
+                    <div class="background">
+                        <div class="inner-cell">
+                            <div class="label">Quote</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tablebody">
+    <div id="content"></div>
+    
+    <script id="kids-template" type="text/x-handlebars-template">
+                <div class="row">
+                    <div class="row-meta">
+                        <div class="name  cell primary">
+                            <dl class="inner-cell">
+                                <dt></dt>
+                                <dd>
+                                    <img class="img" src="{{image}}">
+                                    <div class="text">{{name}}</div>&nbsp;</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row-body">
+                        <div class="location  cell ">
+                            <dl class="inner-cell">
+                                <dt>School</dt>
+                                <dd>{{school}}</dd>
+                            </dl>
+                        </div>
+                        <div class="accusations  cell ">
+                            <dl class="inner-cell">
+                                <dt>Born</dt>
+                                <dd>{{born}}</dd>
+                            </dl>
+                        </div>
+                        <div class="resolution  cell ">
+                            <dl class="inner-cell">
+                                <dt>After graduation</dt>
+                                <dd>{{aftergraduation}}</dd>
+                            </dl>
+                        </div>
+                        <div class="reason  cell ">
+                            <dl class="inner-cell">
+                                <dt>Quote</dt>
+                                <dd>{{quote}}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <!-- //end .row-body -->
+                </div>
+
+    </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="figcaption">
+<p class="source">&nbsp;</p>
+<p class="credit">Credit Line Goes Here</p>
+</div></div>
+
+    <!-- Don't need jQuery for Tabletop, but using it for this example -->
+    <script type="text/javascript" src="js/handlebars.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/tabletop.js"></script>
+    <script type="text/javascript">
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?key=0Ark-PJD-Ze_DdGplNXRzVDFSVzVCVGsxdUVxLXRXdVE&output=html';
+
+      $(document).ready( function() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showInfo,
+                         parseNumbers: true } );
+      });
+        
+      function showInfo(data, tabletop) {
+        var source   = $("#kids-template").html();
+        var template = Handlebars.compile(source);
+
+        $.each( tabletop.sheets("kids").all(), function(i, cat) {
+          var html = template(cat);
+          $("#content").append(html);
+        });
+      }
+    
+    </script>
+
+
+
+  </body>
+</html>
