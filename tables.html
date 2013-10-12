@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>Cool Cats With Andy Boyle</title>
+    <title>Cool Cat Tables With Andy Boyle</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
@@ -37,25 +37,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Cats in tables</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li><a href="http://www.twitter.com/andymboyle">About</a></li>
+            <li><a href="mailto:andymboyle@gmail.com">Contact</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -73,17 +61,25 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <h1>Cats In Tables</h1>
+        <p>On this page we show the cat data in tables, instead of in sentences.</p>
+        <p><a href="https://github.com/andymboyle/spj-tabletop/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div id="cat-list">
-        </div>
+      <div class="row" id="cat-list">
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Color</th>
+            <th>Hometown</th>
+          </tr>
+          <tbody id="cat-table">
+          </tbody>
+        </table>
       </div>
 
       <hr>
@@ -94,8 +90,13 @@
     </div> <!-- /container -->
 
     <script id="cat-template" type="text/x-handlebars-template">
-        <h3>{{name}}</h4>
-        <img src="{{photo}}"><p style="cat">This {{gender}} cat is {{age}}-years-old, {{color}} and was born in {{city}}.</p><hr>
+        <tr>
+          <td>{{name}}</td>
+          <td>{{gender}}</td>
+          <td>{{age}}</td>
+          <td>{{color}}</td>
+          <td>{{hometown}}</td>
+        </tr>
     </script>
 
     <!-- Bootstrap core JavaScript
@@ -121,7 +122,7 @@
 
         $.each( tabletop.sheets("cats").all(), function(i, cat) {
           var html = template(cat);
-          $("#cat-list").append(html);
+          $("#cat-table").append(html);
         });
       }
     </script>
