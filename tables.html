@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,6 +24,59 @@
       <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js></script>
     <![endif]-->
+    <style>
+    @media only screen and (max-width: 550px) {
+
+  .col-label {
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+    width: 110px;
+  }
+
+  /* Force table to not be like tables anymore */
+  /* line 423, scss/style.scss */
+  #no-more-tables table,
+  #no-more-tables thead,
+  #no-more-tables tbody,
+  #no-more-tables th,
+  #no-more-tables td,
+  #no-more-tables tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  /* line 428, scss/style.scss */
+  #no-more-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  /* line 434, scss/style.scss */
+  #no-more-tables tr {
+    border: 1px solid #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  /* line 438, scss/style.scss */
+  #no-more-tables tr td:first-child {
+    background-color: #eeeeee;
+  }
+
+  /* line 443, scss/style.scss */
+  #no-more-tables td {
+    /* Behave  like a "row" */
+    white-space: normal;
+    text-align: center;
+  }
+}
+</style>
   </head>
 
   <body>
@@ -67,7 +119,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="no-more-tables">
       <div class="row" id="cat-list">
         <table class="table">
           <tr>
@@ -76,6 +128,7 @@
             <th>Age</th>
             <th>Color</th>
             <th>Hometown</th>
+            <th>Band name</th>
           </tr>
           <tbody id="cat-table">
           </tbody>
@@ -96,6 +149,7 @@
           <td>{{age}}</td>
           <td>{{color}}</td>
           <td>{{hometown}}</td>
+          <td>{{band}}</td>
         </tr>
     </script>
 
